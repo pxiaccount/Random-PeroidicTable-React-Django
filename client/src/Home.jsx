@@ -27,7 +27,7 @@ const Home = () => {
     const getRandomElement = () => {
         const randomI = Math.floor(Math.random() * atomicNumber.number.length)
         setRandomElement(atomicNumber.number[randomI])
-        console.log(atomicNumber.number[randomI])
+        // console.log(atomicNumber.number[randomI])
     }
 
     const checkElement = () => {
