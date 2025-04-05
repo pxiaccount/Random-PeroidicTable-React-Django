@@ -7,6 +7,7 @@ const Home = () => {
     const [randomElement, setRandomElement] = useState(null)
     const [inputValue, setInputValue] = useState('')
     const [answer, setAnswer] = useState('')
+    const [linkVisiblity, setLinkVisibility] = useState('hidden')
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,17 +34,29 @@ const Home = () => {
         if (randomElement && inputValue) {
             if (randomElement.name.toLowerCase() === inputValue.toLowerCase() | randomElement.symbol.toLowerCase() === inputValue.toLowerCase()) {
                 setAnswer('Correct!')
+                setLinkVisibility('visible')
             } else {
                 setAnswer('Wrong')
             }
         }
     }
 
+    const handleLink = () => {
+        getRandomElement()
+        setLinkVisibility('hidden')
+        setAnswer('')
+    }
+
     return (
         <>
             <h1>Random Periodic Table</h1>
             <div id="answer">{answer}</div>
-            <div id="link"><a onClick={getRandomElement}>Random Again?</a></div>
+            <div id="link" style={{ visibility: linkVisiblity, color: 'blue', textDecoration: 'underline' }}><a onClick={handleLink}>Random Again?</a></div>
+            <div id="atomicnumber">
+                {randomElement && (
+                    <div>{randomElement.atomic_number}</div>
+                )}
+            </div>
             <input
                 type="text"
                 value={inputValue}
