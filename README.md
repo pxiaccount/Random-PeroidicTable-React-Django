@@ -48,7 +48,7 @@ Clone the repository:
 1. Change directory in to client:
 
     ```bash
-    cd Django-React-CRUD/client
+    cd Random-PeroidicTable-React-Django/client
     ```
 
 2. Install packages:
