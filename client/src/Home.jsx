@@ -8,6 +8,7 @@ const Home = () => {
     const [inputValue, setInputValue] = useState('')
     const [answer, setAnswer] = useState('')
     const [linkVisiblity, setLinkVisibility] = useState('hidden')
+    const [reveal, setReveal] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +28,21 @@ const Home = () => {
     const getRandomElement = () => {
         const randomI = Math.floor(Math.random() * atomicNumber.number.length)
         setRandomElement(atomicNumber.number[randomI])
+        if (answer) {
+            setAnswer('')
+            setReveal(reveal => !reveal)
+        }
+        setReveal(false)
         // console.log(atomicNumber.number[randomI])
+    }
+
+    const revealAnswer = () => {
+        setReveal(reveal => !reveal)
+        if (!reveal) {
+            setAnswer(randomElement.name)
+        } else {
+            setAnswer('')
+        }
     }
 
     const checkElement = () => {
@@ -65,6 +80,7 @@ const Home = () => {
             />
             <button onClick={getRandomElement}>Random</button><br />
             <button onClick={() => checkElement()}>Submit</button>
+            <button onClick={() => revealAnswer()}>Reveal/Hide Answer</button>
         </>
     )
 }
