@@ -76,32 +76,34 @@ const Home = () => {
 
     return (
         <>
-            <h1>Random Periodic Table</h1>
-            <div id="answer">{answer}</div>
-            <div id="link" style={{ visibility: linkVisiblity, color: 'blue', textDecoration: 'underline' }}><a onClick={handleLink}>Random Again?</a></div>
-            <div id="atomicnumber">
-                {randomElement && (
-                    <div>{randomElement.atomic_number}</div>
-                )}
+            <div>
+                <h1>Random Periodic Table</h1>
+                <div id="answer">{answer}</div>
+                <div id="link" style={{ visibility: linkVisiblity, color: 'blue', textDecoration: 'underline' }}><a onClick={handleLink}>Random Again?</a></div>
+                <div id="atomicnumber">
+                    {randomElement && (
+                        <div>{randomElement.atomic_number}</div>
+                    )}
+                </div>
+                <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder='Enter element name...'
+                />
+                <button onClick={() => getRandomElement()}>Random</button><br />
+                <button onClick={() => checkElement()}>Submit</button>
+                <button onClick={() => revealAnswer()}>Reveal/Hide Answer</button>
+                <br /><br />
+                Filter atomic number (0 is default):
+                <br />
+                <input
+                    type="number"
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                    placeholder='Enter element name...'
+                />
             </div>
-            <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder='Enter element name...'
-            />
-            <button onClick={() => getRandomElement()}>Random</button><br />
-            <button onClick={() => checkElement()}>Submit</button>
-            <button onClick={() => revealAnswer()}>Reveal/Hide Answer</button>
-            <br /><br />
-            Filter atomic number (0 is default):
-            <br />
-            <input
-                type="number"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-                placeholder='Enter element name...'
-            />
         </>
     )
 }
