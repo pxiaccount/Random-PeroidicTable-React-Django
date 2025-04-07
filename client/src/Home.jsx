@@ -46,7 +46,7 @@ const Home = () => {
         setReveal(reveal => !reveal)
         setLinkVisibility('hidden')
         if (!reveal) {
-            setAnswer(randomElement.symbol + ` (${randomElement.name})`)
+            setAnswer(randomElement.symbol + ` (${randomElement.name}) Group:(${randomElement.group})`)
         } else {
             setAnswer('')
         }
