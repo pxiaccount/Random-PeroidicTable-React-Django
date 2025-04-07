@@ -78,6 +78,11 @@ const Home = () => {
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key == 'Enter') {
+                            checkElement();
+                        }
+                    }}
                     placeholder="Enter element name..."
                     className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
