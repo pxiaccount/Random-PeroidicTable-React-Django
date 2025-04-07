@@ -7,7 +7,6 @@ const Home = () => {
     const [randomElement, setRandomElement] = useState(null)
     const [inputValue, setInputValue] = useState('')
     const [answer, setAnswer] = useState('')
-    const [linkVisiblity, setLinkVisibility] = useState('hidden')
     const [reveal, setReveal] = useState(false)
     const [filter, setFilter] = useState(0)
 
@@ -39,14 +38,12 @@ const Home = () => {
             setReveal(reveal => !reveal)
         }
         setReveal(false)
-        setLinkVisibility('hidden')
     }
 
     const revealAnswer = () => {
         setReveal(reveal => !reveal)
-        setLinkVisibility('hidden')
         if (!reveal) {
-            setAnswer(randomElement.symbol + ` (${randomElement.name}) Group:(${randomElement.group})`)
+            setAnswer(randomElement.symbol + ` (${randomElement.name}) Group:${randomElement.group}`)
         } else {
             setAnswer('')
         }
@@ -56,21 +53,10 @@ const Home = () => {
         if (randomElement && inputValue) {
             if (randomElement.name.toLowerCase() === inputValue.toLowerCase() | randomElement.symbol.toLowerCase() === inputValue.toLowerCase()) {
                 setAnswer('Correct!')
-                setLinkVisibility('visible')
             } else {
                 setAnswer('Wrong')
             }
         }
-    }
-
-    const handleLink = () => {
-        if (filter) {
-            getRandomElement(filter)
-        } else {
-            getRandomElement(atomicNumber.number.length)
-        }
-        setLinkVisibility('hidden')
-        setAnswer('')
     }
 
     return (
@@ -80,12 +66,6 @@ const Home = () => {
 
                 <div id="answer" className="text-center text-lg font-medium">
                     {answer}
-                </div>
-
-                <div id="link"
-                    className="text-center cursor-pointer text-blue-600 hover:text-blue-800 underline"
-                    style={{ visibility: linkVisiblity }}>
-                    <a onClick={handleLink}>Random Again?</a>
                 </div>
 
                 <div id="atomicnumber" className="text-center text-4xl font-bold text-gray-700">
