@@ -9,6 +9,7 @@ const Home = () => {
     const [answer, setAnswer] = useState('')
     const [linkVisiblity, setLinkVisibility] = useState('hidden')
     const [reveal, setReveal] = useState(false)
+    const [filter, setFilter] = useState(0)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,20 +27,27 @@ const Home = () => {
     }, [])
 
     const getRandomElement = () => {
-        const randomI = Math.floor(Math.random() * atomicNumber.number.length)
+        let randomI
+        if (filter) {
+            randomI = Math.floor(Math.random() * filter)
+        } else {
+            randomI = Math.floor(Math.random() * atomicNumber.number.length)
+        }
         setRandomElement(atomicNumber.number[randomI])
         if (answer) {
             setAnswer('')
             setReveal(reveal => !reveal)
         }
         setReveal(false)
+        setLinkVisibility('hidden')
         // console.log(atomicNumber.number[randomI])
     }
 
     const revealAnswer = () => {
         setReveal(reveal => !reveal)
+        setLinkVisibility('hidden')
         if (!reveal) {
-            setAnswer(randomElement.name)
+            setAnswer(randomElement.symbol + ` (${randomElement.name})`)
         } else {
             setAnswer('')
         }
@@ -57,7 +65,11 @@ const Home = () => {
     }
 
     const handleLink = () => {
-        getRandomElement()
+        if (filter) {
+            getRandomElement(filter)
+        } else {
+            getRandomElement(atomicNumber.number.length)
+        }
         setLinkVisibility('hidden')
         setAnswer('')
     }
@@ -78,9 +90,18 @@ const Home = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder='Enter element name...'
             />
-            <button onClick={getRandomElement}>Random</button><br />
+            <button onClick={() => getRandomElement()}>Random</button><br />
             <button onClick={() => checkElement()}>Submit</button>
             <button onClick={() => revealAnswer()}>Reveal/Hide Answer</button>
+            <br /><br />
+            Filter atomic number (0 is default):
+            <br />
+            <input
+                type="number"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                placeholder='Enter element name...'
+            />
         </>
     )
 }
