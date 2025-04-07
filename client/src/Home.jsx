@@ -40,7 +40,6 @@ const Home = () => {
         }
         setReveal(false)
         setLinkVisibility('hidden')
-        // console.log(atomicNumber.number[randomI])
     }
 
     const revealAnswer = () => {
@@ -75,36 +74,65 @@ const Home = () => {
     }
 
     return (
-        <>
-            <div>
-                <h1>Random Periodic Table</h1>
-                <div id="answer">{answer}</div>
-                <div id="link" style={{ visibility: linkVisiblity, color: 'blue', textDecoration: 'underline' }}><a onClick={handleLink}>Random Again?</a></div>
-                <div id="atomicnumber">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md space-y-4">
+                <h1 className="text-3xl font-bold text-center text-gray-800">Random Periodic Table</h1>
+
+                <div id="answer" className="text-center text-lg font-medium">
+                    {answer}
+                </div>
+
+                <div id="link"
+                    className="text-center cursor-pointer text-blue-600 hover:text-blue-800 underline"
+                    style={{ visibility: linkVisiblity }}>
+                    <a onClick={handleLink}>Random Again?</a>
+                </div>
+
+                <div id="atomicnumber" className="text-center text-4xl font-bold text-gray-700">
                     {randomElement && (
                         <div>{randomElement.atomic_number}</div>
                     )}
                 </div>
+
                 <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder='Enter element name...'
+                    placeholder="Enter element name..."
+                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <button onClick={() => getRandomElement()}>Random</button><br />
-                <button onClick={() => checkElement()}>Submit</button>
-                <button onClick={() => revealAnswer()}>Reveal/Hide Answer</button>
-                <br /><br />
-                Filter atomic number (0 is default):
-                <br />
-                <input
-                    type="number"
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                    placeholder='Enter element name...'
-                />
+
+                <div className="flex flex-col gap-2 w-full">
+                    <div className="grid grid-cols-2 gap-2">
+                        <button
+                            onClick={() => getRandomElement()}
+                            className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                            Random
+                        </button>
+                        <button
+                            onClick={() => revealAnswer()}
+                            className="w-full bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600">
+                            Reveal/Hide Answer
+                        </button>
+                    </div>
+                    <button
+                        onClick={() => checkElement()}
+                        className="w-full bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+                        Submit
+                    </button>
+                </div>
+
+                <div className="text-center space-y-2">
+                    <div className="text-gray-600">Filter atomic number (0 is default):</div>
+                    <input
+                        type="number"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                        className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 
