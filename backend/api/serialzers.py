@@ -4,4 +4,4 @@ from .models import Elements
 class ElementsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Elements
-        fields = ['id', 'symbol', 'name', 'atomic_number', 'atomic_mass', 'group']
+        fields = ['id', 'symbol', 'name', 'atomic_number', 'atomic_mass', 'group', 'thai_translation']
