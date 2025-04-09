@@ -2,6 +2,13 @@
 
 Random Perodic Table with React.js and Django using a custom API from my earlier project: [PeriodicTable-RESTAPI-Django](https://github.com/pxiaccount/PeroidicTable-RESTAPI-Django)
 
+## Screenshots
+Default
+![default](./screenshots/default.png)
+
+Randomize
+![random](./screenshots/random.png)
+
 ## Installation
 
 Clone the repository:
