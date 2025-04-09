@@ -70,7 +70,7 @@ const Home = () => {
     return (
         <div className={`min-h-screen flex items-center justify-center ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
             <button onClick={switchMode} className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">{darkMode ? "☀️" : "🌙"}</button>
-            <div className={`${darkMode ? 'bg-gray-950' : 'bg-white'} p-8 rounded-lg shadow-lg w-full max-w-md space-y-4`}>
+            <div className={`${darkMode ? 'bg-gray-950' : 'bg-white'} p-8 rounded-lg shadow-lg ${darkMode ? 'shadow-white' : 'shadow-black'} w-full max-w-md space-y-4`}>
                 <h1 className={`text-3xl font-bold text-center ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Random Periodic Table</h1>
 
                 <div id="answer" className={`text-center text-lg font-medium ${darkMode ? 'text-white' : 'text-gray-800'}`}>
