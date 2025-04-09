@@ -9,6 +9,7 @@ const Home = () => {
     const [answer, setAnswer] = useState('')
     const [reveal, setReveal] = useState(false)
     const [filter, setFilter] = useState(0)
+    const [minNum, setMinNum] = useState(0)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,18 +27,20 @@ const Home = () => {
     }, [])
 
     const getRandomElement = () => {
-        let randomI
+        let randomI;
+        const min = Math.ceil(minNum);
         if (filter) {
-            randomI = Math.floor(Math.random() * filter)
+            randomI = Math.floor(Math.random() * (filter - min + 1)) + min;
         } else {
-            randomI = Math.floor(Math.random() * atomicNumber.number.length)
+            randomI = Math.floor(Math.random() * (atomicNumber.number.length - min + 1)) + min;
         }
-        setRandomElement(atomicNumber.number[randomI])
+        const element = atomicNumber.number.find(elem => elem.atomic_number === randomI);
+        setRandomElement(element);
         if (answer) {
-            setAnswer('')
-            setReveal(reveal => !reveal)
+            setAnswer('');
+            setReveal(reveal => !reveal);
         }
-        setReveal(false)
+        setReveal(false);
     }
 
     const revealAnswer = () => {
@@ -108,13 +111,33 @@ const Home = () => {
                 </div>
 
                 <div className="text-center space-y-2">
-                    <div className="text-gray-600">Filter atomic number (0 is default):</div>
-                    <input
-                        type="number"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                        className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+                    <div className="text-gray-600 font-medium">Filter Atomic Numbers</div>
+                    <div className="space-y-2">
+                        <div>
+                            <label className="block text-sm text-gray-600 mb-1">Minimum (1-118)</label>
+                            <input
+                                type="number"
+                                min="1"
+                                max="118"
+                                value={minNum}
+                                onChange={(e) => setMinNum(e.target.value)}
+                                placeholder="Enter minimum atomic number"
+                                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm text-gray-600 mb-1">Maximum (1-118)</label>
+                            <input
+                                type="number"
+                                min="1"
+                                max="118"
+                                value={filter}
+                                onChange={(e) => setFilter(e.target.value)}
+                                placeholder="Enter maximum atomic number"
+                                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
