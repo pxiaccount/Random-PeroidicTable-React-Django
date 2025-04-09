@@ -68,16 +68,16 @@ const Home = () => {
     }
 
     return (
-        <div className={`min-h-screen flex items-center justify-center bg-gray-100`}>
-            <button>Mode</button>
-            <div className={`bg-white p-8 rounded-lg shadow-lg w-full max-w-md space-y-4`}>
-                <h1 className={`text-3xl font-bold text-center text-gray-800`}>Random Periodic Table</h1>
+        <div className={`min-h-screen flex items-center justify-center ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+            <button onClick={switchMode} className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">{darkMode ? "☀️" : "🌙"}</button>
+            <div className={`${darkMode ? 'bg-gray-950' : 'bg-white'} p-8 rounded-lg shadow-lg w-full max-w-md space-y-4`}>
+                <h1 className={`text-3xl font-bold text-center ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>Random Periodic Table</h1>
 
-                <div id="answer" className={`text-center text-lg font-medium`}>
+                <div id="answer" className={`text-center text-lg font-medium ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                     {answer}
                 </div>
 
-                <div id="atomicnumber" className={`text-center text-4xl font-bold text-gray-700`}>
+                <div id="atomicnumber" className={`text-center text-4xl font-bold ${darkMode ? 'text-gray-100' : 'text-gray-800'}`}>
                     {randomElement && (
                         <div>{randomElement.atomic_number}</div>
                     )}
@@ -93,7 +93,7 @@ const Home = () => {
                         }
                     }}
                     placeholder="Enter element name..."
-                    className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                    className={`w-full p-2 border bg-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
 
                 <div className={`flex flex-col gap-2 w-full`}>
@@ -117,10 +117,10 @@ const Home = () => {
                 </div>
 
                 <div className={`text-center space-y-2`}>
-                    <div className={`text-gray-600 font-medium`}>Filter Atomic Numbers</div>
+                    <div className={`${darkMode ? 'text-gray-100' : 'text-gray-600'} font-medium`}>Filter Atomic Numbers</div>
                     <div className={`space-y-2`}>
                         <div>
-                            <label className={`block text-sm text-gray-600 mb-1`}>Minimum (1-118)</label>
+                            <label className={`block text-sm ${darkMode ? 'text-gray-100' : 'text-gray-600'} mb-1`}>Minimum (1-118)</label>
                             <input
                                 type="number"
                                 min="1"
@@ -128,11 +128,11 @@ const Home = () => {
                                 value={minNum}
                                 onChange={(e) => setMinNum(e.target.value)}
                                 placeholder="Enter minimum atomic number"
-                                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                                className={`w-full p-2 border rounded-md focus:outline-none bg-white focus:ring-2 focus:ring-blue-500`}
                             />
                         </div>
                         <div>
-                            <label className={`block text-sm text-gray-600 mb-1`}>Maximum (1-118)</label>
+                            <label className={`block text-sm ${darkMode ? 'text-gray-100' : 'text-gray-600'} mb-1`}>Maximum (1-118)</label>
                             <input
                                 type="number"
                                 min="1"
@@ -140,7 +140,7 @@ const Home = () => {
                                 value={filter}
                                 onChange={(e) => setFilter(e.target.value)}
                                 placeholder="Enter maximum atomic number"
-                                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 bg-white focus:ring-blue-500`}
                             />
                         </div>
                     </div>
