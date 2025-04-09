@@ -10,6 +10,7 @@ const Home = () => {
     const [reveal, setReveal] = useState(false)
     const [filter, setFilter] = useState(0)
     const [minNum, setMinNum] = useState(0)
+    const [darkMode, setDarkMode] = useState(true)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -62,16 +63,21 @@ const Home = () => {
         }
     }
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md space-y-4">
-                <h1 className="text-3xl font-bold text-center text-gray-800">Random Periodic Table</h1>
+    const switchMode = () => {
+        setDarkMode(darkMode => !darkMode)
+    }
 
-                <div id="answer" className="text-center text-lg font-medium">
+    return (
+        <div className={`min-h-screen flex items-center justify-center bg-gray-100`}>
+            <button>Mode</button>
+            <div className={`bg-white p-8 rounded-lg shadow-lg w-full max-w-md space-y-4`}>
+                <h1 className={`text-3xl font-bold text-center text-gray-800`}>Random Periodic Table</h1>
+
+                <div id="answer" className={`text-center text-lg font-medium`}>
                     {answer}
                 </div>
 
-                <div id="atomicnumber" className="text-center text-4xl font-bold text-gray-700">
+                <div id="atomicnumber" className={`text-center text-4xl font-bold text-gray-700`}>
                     {randomElement && (
                         <div>{randomElement.atomic_number}</div>
                     )}
@@ -87,34 +93,34 @@ const Home = () => {
                         }
                     }}
                     placeholder="Enter element name..."
-                    className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 />
 
-                <div className="flex flex-col gap-2 w-full">
-                    <div className="grid grid-cols-2 gap-2">
+                <div className={`flex flex-col gap-2 w-full`}>
+                    <div className={`grid grid-cols-2 gap-2`}>
                         <button
                             onClick={() => getRandomElement()}
-                            className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                            className={`w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600`}>
                             Random
                         </button>
                         <button
                             onClick={() => revealAnswer()}
-                            className="w-full bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600">
+                            className={`w-full bg-purple-500 text-white px-4 py-2 rounded-md hover:bg-purple-600`}>
                             Reveal/Hide Answer
                         </button>
                     </div>
                     <button
                         onClick={() => checkElement()}
-                        className="w-full bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+                        className={`w-full bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600`}>
                         Submit
                     </button>
                 </div>
 
-                <div className="text-center space-y-2">
-                    <div className="text-gray-600 font-medium">Filter Atomic Numbers</div>
-                    <div className="space-y-2">
+                <div className={`text-center space-y-2`}>
+                    <div className={`text-gray-600 font-medium`}>Filter Atomic Numbers</div>
+                    <div className={`space-y-2`}>
                         <div>
-                            <label className="block text-sm text-gray-600 mb-1">Minimum (1-118)</label>
+                            <label className={`block text-sm text-gray-600 mb-1`}>Minimum (1-118)</label>
                             <input
                                 type="number"
                                 min="1"
@@ -122,11 +128,11 @@ const Home = () => {
                                 value={minNum}
                                 onChange={(e) => setMinNum(e.target.value)}
                                 placeholder="Enter minimum atomic number"
-                                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                             />
                         </div>
                         <div>
-                            <label className="block text-sm text-gray-600 mb-1">Maximum (1-118)</label>
+                            <label className={`block text-sm text-gray-600 mb-1`}>Maximum (1-118)</label>
                             <input
                                 type="number"
                                 min="1"
@@ -134,7 +140,7 @@ const Home = () => {
                                 value={filter}
                                 onChange={(e) => setFilter(e.target.value)}
                                 placeholder="Enter maximum atomic number"
-                                className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                             />
                         </div>
                     </div>
