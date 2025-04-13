@@ -3,3 +3,10 @@
 * {
     font-family: Inter;
 }
+
+.box {
+    background-color: red;
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+}
